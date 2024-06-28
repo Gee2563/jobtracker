@@ -11,13 +11,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3.7.0  # Update to Node.js 20
+        uses: actions/checkout@v2  # Update to a valid version, v2 is a stable version
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3.1.1  # Update to Node.js 20
+        uses: docker/setup-buildx-action@v0.7.0  # Update to a valid version, v0.7.0 is stable
 
       - name: Login to Docker Hub
-        uses: docker/login-action@v2.3.0  # Update to Node.js 20
+        uses: docker/login-action@v2.1.0  # Update to a valid version, v2.1.0 is stable
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -26,7 +26,7 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO_NAME }}:latest
 
       - name: Build and push
-        uses: docker/build-push-action@v5.3.0  # Update to Node.js 20
+        uses: docker/build-push-action@v2.8.0  # Update to a valid version, v2.8.0 is stable
         with:
           context: .
           push: true
