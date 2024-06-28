@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>JobTrack</title>
+    </head>
+    <header>
+        {% include 'includes/header.html' %}
+    </header>
+    <body>
+        <h1> Company Detail</h1>
+        <p>Company name: {{ company.name }}</p>
+        <p>Location: {{ company.location }}</p>
+        <p>Description: {{ company.description }}</p>
+        <p>URL: {{ company.url }}</p>
+        <p>Jobs:</p>
+        {% if company.jobs.all %}
+        <ul>
+            {% for job in company.jobs.all %}
+            <li><a href="{% url 'jobs_app:detail' job.id %}">{{ job.job_title }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No jobs are available.</p>
+        {% endif %}
+        <a href="{% url 'jobs_app:delete_company' company.id %}">Delete</a>
+    </body>
+</html>

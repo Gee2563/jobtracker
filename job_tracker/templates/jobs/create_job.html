@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>JobTrack</title>
+    </head>
+    <header>
+        {% include 'includes/header.html' %}
+    </header>
+    <body>
+        <h1> Create application</h1>
+        <form action="{% url 'jobs_app:create_job' %}" method="POST">
+            {% csrf_token %}
+            <label for="job_title">Job title:</label>
+            <input type="text" id="job_title" name="job_title">
+            <label for="company">Company:</label>
+            <select name="company" id="company">
+                {% for company in companies_list %}
+                <option value="{{ company.id }}">{{ company.company_name }}</option>
+                {% endfor %}
+            </select>
+            <label for="hiring_manager">Hiring manager:</label>
+            <select name="hiring_manager" id="hiring_manager">
+                {% for hiring_manager in hiring_managers_list %}
+                <option value="{{ hiring_manager.id }}">{{ hiring_manager.hiring_manager_name }}</option>
+                {% endfor %}
+            </select>
+            <label for="job_description">Description:</label>
+            <input type="text" id="job_description" name="job_description">
+            <input type="submit" value="Submit">
+        </form>
+    </body>

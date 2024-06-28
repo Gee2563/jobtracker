@@ -1,0 +1,40 @@
+<!DOCTYPE
+<html>
+    <head>
+        <title>JobTrack</title>
+    </head>
+    <header>
+        {% include 'includes/header.html' %}
+    </header>
+    
+    <body>
+        {% if companies_list %}
+        <h1> Companies</h1>
+        <ul>
+            {% for company in companies_list %}
+            <li><a href="{% url 'jobs_app:company_detail' company.id %}">{{ company.name }}</a></li>
+
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No companies are available.</p>
+        {% endif %}
+    </body>
+    <body>
+        <h2> Create company</h2>
+        <form action="{% url 'jobs_app:creating_company' %}" method="POST">
+            {% csrf_token %}
+            <label for="company_name">Company name:</label>
+            <input type="text" id="company_name" name="company_name">
+            <label for="company_location">Location:</label>
+            <input type="text" id="company_location" name="company_location">
+            <label for="company_description">Description:</label>
+            <input type="text" id="company_description" name="company_description">
+            <label for="url">URL:</label> 
+            <input type="text" id="url" name="url">
+            <input type="submit" value="Submit">
+        </form>
+        
+        </body>
+
+</html>

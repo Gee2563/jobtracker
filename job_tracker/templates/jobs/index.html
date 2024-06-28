@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JobTrack</title>
+    </head>
+    <header>
+        {% include 'includes/header.html' %}
+    </header>
+    <body class="latest_job_list">
+        {%if jobs_list%}
+        <h1>Latest applications</h1>
+        <ul>
+            {% for job in jobs_list %}
+            <li><a href="{% url 'jobs_app:detail' job.id %}">{{ job.title }}</a></li>
+            {% endfor %}
+        </ul>
+        {%else%}
+        <p>No jobs are available.</p>
+        {%endif%}
+        
+        
+        <a href="{%url 'jobs_app:all_jobs'%}">All applications</a>
+        <a href="{%url 'jobs_app:companies'%}">Companies</a>
+        <a href="{%url 'jobs_app:hiring_managers'%}">Hiring manager list</a>
+
+    </body>
+
+</html>

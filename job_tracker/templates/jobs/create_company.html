@@ -1,0 +1,23 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>JobTrack</title>
+    </head>
+    <header>
+        {% include 'includes/header.html' %}
+    </header>
+    <body>
+        <h1> Create company</h1>
+        <form action="{% url 'jobs_app:create_company' %}" method="POST">
+            {% csrf_token %}
+            <label for="company_name">Company name:</label>
+            <input type="text" id="company_name" name="company_name">
+            <label for="company_location">Location:</label>
+            <input type="text" id="company_location" name="company_location">
+            <label for="company_description">Description:</label>
+            <input type="text" id="company_description" name="company_description">
+            <input type="submit" value="Submit">
+        </form> 
+    </body>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>JobTrack</title>
+    </head>
+    <header>
+        {% include 'includes/header.html' %}
+    </header>
+    <body>
+        <h1> Create Hiring Manager</h1>
+        <form action="{% url 'jobs_app:create_hiring_manager' %}" method="POST">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email">
+            <label for="linkedIn_url">LinkedIn:</label>
+            <input type="text" id="linkedIn_url" name="linkedIn_url">
+            <label for="company">Company:</label>
+            <input type="text" id="company" name="company">
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
+

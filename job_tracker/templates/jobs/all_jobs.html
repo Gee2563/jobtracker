@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JobTrack</title>
+    </head>
+    <header>
+        {% include 'includes/header.html' %}
+    </header>
+    <body>
+        {% if jobs_list %}
+        <h1>All Applications</h1>
+        <ul>
+            {% for job in jobs_list %}
+            <li><a href="{% url 'jobs_app:detail' job.id %}">{{ job.title }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No jobs are available.</p>
+        {% endif %}
+        
+        <h2>Create application</h2>
+        <form action="{% url 'jobs_app:create_job' %}" method="POST">
+            {% csrf_token %}
+            <label for="job_title">Job title:</label>
+            <input type="text" id="job_title" name="job_title">
+            
+            <label for="company">Company:</label>
+            <select name="company" id="company">
+                {% for company in companies_list %}
+                <option value="{{ company.id }}">{{ company.name }}</option>
+                {% endfor %}
+            </select>
+            
+            <label for="hiring_manager">Hiring manager:</label>
+            <select name="hiring_manager" id="hiring_manager">
+                {% for hiring_manager in hiring_managers_list %}
+                <option value="{{ hiring_manager.id }}">{{ hiring_manager.name }}</option>
+                {% endfor %}
+            </select>
+            
+            <label for="job_description">Description:</label>
+            <input type="text" id="job_description" name="job_description">
+            
+            <label for="date_applied">Date Applied:</label>
+            <input type="date" id="date_applied" name="date_applied">
+            
+            <input type="submit" value="Submit">
+        </form>
+        <br>
+        <a href="{% url 'jobs_app:index' %}">Return home</a>
+    </body>
+</html>

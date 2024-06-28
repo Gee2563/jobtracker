@@ -1,0 +1,15 @@
+version: '3'
+services:
+  job-tracker:
+    image: job_tracker_rt
+    container_name: job-tracker-c1
+    ports:
+      - "8000:8000"
+    networks:
+      - my-django-postgres-network
+    env_file:
+      - .env
+
+networks:
+  my-django-postgres-network:
+    external: true  

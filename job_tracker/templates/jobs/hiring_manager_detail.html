@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JobTrack</title>
+    </head>
+    <header>
+        {% include 'includes/header.html' %}
+    </header>
+    <body>
+        <h1> Hiring Manager Detail</h1>
+        <h2>Name: {{ hiring_manager.name }}</h2>
+        <h2>Email: {{ hiring_manager.email }}</h2>
+        <h2>LinkedIn: {{hiring_manager.url}}</h2>
+        <h2>Company: {{ hiring_manager.company }}</h2>
+        <h2>Jobs:</h2>
+        <ul>
+            {% for job in hiring_manager.jobs.all %}
+            <li><a href="{% url 'jobs_app:detail' job.id %}">{{ job.job_title }}</a></li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'jobs_app:delete_hiring_manager' hiring_manager.id %}">Delete</a>
+    </body>
+</html>

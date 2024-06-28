@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JobTrack</title>
+    </head>
+    <header>
+        {% include 'includes/header.html' %}
+    </header>
+    <body>
+        <h1> Hiring Managers</h1>
+        <ul>
+            {% for hiring_manager in hiring_managers_list %}
+            <li><a href="{% url 'jobs_app:hiring_manager_detail' hiring_manager.id %}">{{ hiring_manager.name }}: {{ hiring_manager.company }}</a></li>
+            {% endfor %}
+        </ul>
+        <h2> Create hiring manager</h2>
+        <form action="{% url 'jobs_app:creating_hiring_manager' %}" method="POST">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email">
+            <label for="linkedIn_url">LinkedIn:</label>
+            <input type="text" id="linkedIn_url" name="linkedIn_url">
+            <label for="company">Company:</label>
+            <input type="text" id="company" name="company">
+            <input type="submit" value="Submit">
+        </form>
+</html>
